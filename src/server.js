@@ -28,8 +28,10 @@ import config from './config';
 import RedditConnector from './utils/RedditConnector';
 
 const RedditConnectorInstance = new RedditConnector();
-const ddd = RedditConnectorInstance.getData({ subreddit: 'gif' });
-ddd.then(data=>console.info(ddd))
+try {
+await RedditConnectorInstance.getData({ subreddit: 'gif' });
+ddd.then(data => console.info(ddd));
+} catch (err) {}
 const app = express();
 
 //

@@ -18,13 +18,23 @@ export default class RedditConnector {
       accessToken: config.Reddit.accessToken,
     });
   }
-  async getData(options) {
+  async getRandomSubReddit(options) {
     console.info('start fetching reddit api');
     try {
       const data = await this.connector
         .getSubreddit(options.subreddit)
-        .getRandomSubmission({ limit: 100 });
-      // console.info(data);
+        .getRandomSubmission();
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
+  async getNewForGivenSubReddit(options) {
+    console.info('start fetching reddit api');
+    try {
+      const data = await this.connector
+        .getSubreddit(options.subreddit)
+        .getNew({ limit: options.limit ? options.limit : 25 });
       return data;
     } catch (err) {
       throw err;
