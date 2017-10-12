@@ -22,6 +22,13 @@ module.exports = {
       `http://localhost:${process.env.PORT || 3000}`,
   },
 
+  // Reddit
+  Reddit: {
+    userAgent: 'API Node js bot for FapFree by /u/vahan_93',
+    clientId: '59dvL-q4N5YNJg',
+    clientSecret: '8Fr1PYAzUCovCVfjUEClfH49aVg',
+    accessToken: 'ltvev_6MqcYTjfnWP8GyojNikqs',
+  },
   // Database
   databaseUrl: process.env.DATABASE_URL || 'sqlite:database.sqlite',
   mongoDB: {

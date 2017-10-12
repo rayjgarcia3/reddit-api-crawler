@@ -25,9 +25,11 @@ import models from './data/models';
 import schema from './data/schema';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import config from './config';
-// import getData from './utils/RedditConnector';
-//
-// getData();
+import RedditConnector from './utils/RedditConnector';
+
+const RedditConnectorInstance = new RedditConnector();
+const ddd = RedditConnectorInstance.getData({ subreddit: 'gif' });
+ddd.then(data=>console.info(ddd))
 const app = express();
 
 //
