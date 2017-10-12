@@ -2,14 +2,17 @@
 
 import Snoowrap from 'snoowrap';
 import config from './../config';
-// NOTE: The following examples illustrate how to use snoowrap. However, hardcoding
-// credentials directly into your source code is generally a bad idea in practice (especially
-// if you're also making your source code public). Instead, it's better to either (a) use a separate
-// config file that isn't committed into version control, or (b) use environment variables.
 
-// Create a new snoowrap requester with OAuth credentials.
-// For more information on getting credentials, see here: https://github.com/not-an-aardvark/reddit-oauth-helper
-
+/**
+ * Options mixed object can containt selected params according to the docs
+ * subreddit:name of queryable reddit
+ * after:fullname of a thing
+ * before:fullname of a thing
+ * count:* positive integer (default: 0)
+ * limit:the maximum number of items desired (default: 25, maximum: 100)
+ * show:(optional) the string all
+ * sr_detail:(optional) expand subreddits
+ */
 export default class RedditConnector {
   constructor(...args) {
     this.args = args;
@@ -19,7 +22,7 @@ export default class RedditConnector {
     });
   }
   async getRandomSubReddit(options) {
-    console.info('start fetching reddit api');
+    console.info('start fetching reddit api getRandomSubReddit');
     try {
       const data = await this.connector
         .getSubreddit(options.subreddit)
@@ -30,11 +33,46 @@ export default class RedditConnector {
     }
   }
   async getNewForGivenSubReddit(options) {
-    console.info('start fetching reddit api');
+    console.info('start fetching reddit api getNewForGivenSubReddit');
     try {
       const data = await this.connector
         .getSubreddit(options.subreddit)
-        .getNew({ limit: options.limit ? options.limit : 25 });
+        .getNew({ limit: options.limit ? options.limit : 100 });
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async getHotForGivenSubReddit(options) {
+    console.info('start fetching reddit api getHotForGivenSubReddit');
+    try {
+      const data = await this.connector
+        .getSubreddit(options.subreddit)
+        .getHot({ limit: options.limit ? options.limit : 100 });
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
+  async getRisingForGivenSubReddit(options) {
+    console.info('start fetching reddit api getRisingForGivenSubReddit');
+    try {
+      const data = await this.connector
+        .getSubreddit(options.subreddit)
+        .getRising({ limit: options.limit ? options.limit : 100 });
+      return data;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async search(options) {
+    console.info('start fetching reddit api getRisingForGivenSubReddit');
+    try {
+      const data = await this.connector
+        .getSubreddit(options.subreddit)
+        .search({ limit: options.limit ? options.limit : 100 });
       return data;
     } catch (err) {
       throw err;

@@ -29,9 +29,13 @@ import RedditConnector from './utils/RedditConnector';
 
 const RedditConnectorInstance = new RedditConnector();
 try {
-await RedditConnectorInstance.getData({ subreddit: 'gif' });
-ddd.then(data => console.info(ddd));
-} catch (err) {}
+  const data = RedditConnectorInstance.search({
+    subreddit: 'gif',
+  });
+  data.then(ddd => console.info(ddd, ddd.length));
+} catch (err) {
+  console.info(err);
+}
 const app = express();
 
 //

@@ -26,8 +26,10 @@ module.exports = {
   Reddit: {
     userAgent: 'API Node js bot for FapFree by /u/vahan_93',
     clientId: '59dvL-q4N5YNJg',
-    clientSecret: '8Fr1PYAzUCovCVfjUEClfH49aVg',
-    accessToken: 'ltvev_6MqcYTjfnWP8GyojNikqs',
+    clientSecret: 'IzTfJbePd1OZ9exheOyCtBtFJl0',
+    username: 'vahan_93',
+    password: 'kingsneverdie1993',
+    accessToken: 'BG1cG6lsziM3BO-qd0tDr5D2W_Q',
   },
   // Database
   databaseUrl: process.env.DATABASE_URL || 'sqlite:database.sqlite',
