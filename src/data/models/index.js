@@ -5,6 +5,7 @@ import User from './User';
 import UserLogin from './UserLogin';
 import UserClaim from './UserClaim';
 import UserProfile from './UserProfile';
+import Category from './Category';
 
 User.hasMany(UserLogin, {
   foreignKey: 'userId',
@@ -26,6 +27,13 @@ User.hasOne(UserProfile, {
   onUpdate: 'cascade',
   onDelete: 'cascade',
 });
+Category.hasOne(Category, {
+  foreignKey: 'parentId',
+  as: 'parent',
+  onUpdate: 'cascade',
+  onDelete: 'cascade',
+});
+
 
 function sync(...args) {
   return sequelize.sync(...args);

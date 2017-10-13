@@ -28,14 +28,13 @@ import config from './config';
 import RedditConnector from './utils/RedditConnector';
 
 const RedditConnectorInstance = new RedditConnector();
-try {
-  const data = RedditConnectorInstance.search({
-    subreddit: 'gif',
-  });
-  data.then(ddd => console.info(ddd, ddd.length));
-} catch (err) {
-  console.info(err);
-}
+
+const data = RedditConnectorInstance.search({
+  subreddit: 'click',
+});
+data
+  .then(ddd => console.info(ddd[0].preview, ddd.length))
+  .catch(err => console.info(err));
 const app = express();
 
 //

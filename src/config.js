@@ -25,7 +25,7 @@ module.exports = {
   // Reddit
   Reddit: {
     userAgent: 'API Node js bot for FapFree by /u/vahan_93',
-    clientId: '59dvL-q4N5YNJg',
+    clientId: 'Sq-AItoHFWnspA',
     clientSecret: 'IzTfJbePd1OZ9exheOyCtBtFJl0',
     username: 'vahan_93',
     password: 'kingsneverdie1993',
