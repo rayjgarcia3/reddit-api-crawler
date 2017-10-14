@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 
 const submissionSchema = new Schema({
   domain: { type: String, default: '' },
-  banned_by: { type: String, default: '' },
   thumbnail_width: { type: String, default: '' },
   thumbnail_height: { type: String, default: '' },
   thumbnail: { type: String, default: '' },
@@ -21,8 +20,10 @@ const submissionSchema = new Schema({
   url: { type: String, default: '' },
   author: { type: String, default: '' },
   subreddit_name_prefixed: { type: String, default: '' },
+  local_url: { type: String, default: '' },
   preview: { type: Object },
   added_date: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('Submission', submissionSchema);
+export default mongoose.models.Submission ||
+  mongoose.model('Submission', submissionSchema);

@@ -18,11 +18,6 @@ import config from './../config';
 export default class RedditConnector {
   constructor(...args) {
     this.args = args;
-    // try {
-    //
-    // } catch (ex) {
-    //   console.info(ex);
-    // }
   }
 
   isTokenExpires() {
@@ -66,19 +61,25 @@ export default class RedditConnector {
     }
   }
   async getRandomSubReddit(options) {
-    console.info('start fetching reddit api getRandomSubReddit');
+    console.info(
+      options.subreddit,
+      'start fetching reddit api getRandomSubReddit',
+    );
     try {
+      await this.checkAndGenerateAccessToken();
       const data = await this.connector
         .getSubreddit(options.subreddit)
         .getRandomSubmission();
       return data;
     } catch (err) {
-      throw err;
+      // avoid rejection
+      return null;
     }
   }
   async getNewForGivenSubReddit(options) {
     console.info('start fetching reddit api getNewForGivenSubReddit');
     try {
+      await this.checkAndGenerateAccessToken();
       const data = await this.connector
         .getSubreddit(options.subreddit)
         .getNew({ limit: options.limit ? options.limit : 100 });
@@ -91,6 +92,7 @@ export default class RedditConnector {
   async getHotForGivenSubReddit(options) {
     console.info('start fetching reddit api getHotForGivenSubReddit');
     try {
+      await this.checkAndGenerateAccessToken();
       const data = await this.connector
         .getSubreddit(options.subreddit)
         .getHot({ limit: options.limit ? options.limit : 100 });

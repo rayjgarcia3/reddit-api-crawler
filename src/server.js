@@ -25,16 +25,12 @@ import models from './data/models';
 import schema from './data/schema';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import config from './config';
-import RedditConnector from './utils/RedditConnector';
+import RedditCrawler from './services/RedditCrawler';
 
-const RedditConnectorInstance = new RedditConnector();
+const RedditCrawlerInstance = new RedditCrawler();
 
-const data = RedditConnectorInstance.search({
-  subreddit: 'click',
-});
-data
-  .then(ddd => console.info(ddd[0].preview, ddd.length))
-  .catch(err => console.info(err));
+const data = RedditCrawlerInstance.startCrawl();
+
 const app = express();
 
 //
@@ -196,6 +192,7 @@ app.use((err, req, res, next) => {
 // -----------------------------------------------------------------------------
 const promise = models.sync().catch(err => console.error(err.stack));
 const { user, password, port, url, dbName } = config.mongoDB;
+mongoose.Promise = global.Promise;
 mongoose.connect(`mongodb://${user}:${password}@${url}:${port}/${dbName}`, {
   useMongoClient: true,
 });
@@ -209,7 +206,6 @@ db.once('open', () => {
 });
 if (!module.hot) {
   promise.then(() => {
-    // const { user, password, port, url, dbName } = config.mongoDB;
     app.listen(config.port, () => {
       console.info(`The server is running at http://localhost:${config.port}/`);
     });

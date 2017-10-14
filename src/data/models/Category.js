@@ -7,12 +7,16 @@ const Category = Model.define(
   'Category',
   {
     id: {
-      type: DataType.UUID,
-      defaultValue: DataType.UUIDV1,
+      type: DataType.INTEGER,
+      unique: true,
       primaryKey: true,
+      autoIncrement: true,
     },
     parentId: {
-      type: DataType.UUID,
+      type: DataType.INTEGER,
+    },
+    categoryPath: {
+      type: DataType.STRING(255),
     },
     name: {
       type: DataType.STRING(255),

@@ -32,7 +32,9 @@ module.exports = {
     accessToken: 'BG1cG6lsziM3BO-qd0tDr5D2W_Q',
   },
   // Database
-  databaseUrl: process.env.DATABASE_URL || 'sqlite:database.sqlite',
+  databaseUrl:
+    process.env.DATABASE_URL ||
+    'postgres://postgres:Barev123@localhost:5432/fapFree',
   mongoDB: {
     user: process.env.MONGODB_USER || 'rootReddit',
     password: process.env.MONGODB_PASSWORD || 'youBetterSetItYourSelf123',
