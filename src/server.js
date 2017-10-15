@@ -25,11 +25,7 @@ import models from './data/models';
 import schema from './data/schema';
 import assets from './assets.json'; // eslint-disable-line import/no-unresolved
 import config from './config';
-import RedditCrawler from './services/RedditCrawler';
-
-const RedditCrawlerInstance = new RedditCrawler();
-
-const data = RedditCrawlerInstance.startCrawl();
+import CronUtil from './utils/CronUtil';
 
 const app = express();
 
@@ -219,5 +215,8 @@ if (module.hot) {
   app.hot = module.hot;
   module.hot.accept('./router');
 }
+
+const cronInstance = new CronUtil();
+cronInstance.setCrawlerCron();
 
 export default app;

@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 /** * Reddit-API-Crawler * * Copyright © 2017-present MindLabs, LLC. All rights reserved. * * This source code is licensed under the MIT license found in the * LICENSE.txt file in the root directory of this source tree. */
 
-import Submission from '../data/mongo/models/submission';
+import Submission from '../data/mongo/models/Submission';
 
 export default class SubmissionService {
   constructor(...args) {
@@ -16,13 +16,10 @@ export default class SubmissionService {
           item.map(i => this.storeDataInDbFromAPIResponse(i)),
         );
       }
-      // console.log(9898, item.length, item.__proto__, 4848);
-
       if (item) {
         const exists = await this.checkSubmissionExistsByRedditId(
           await item.id,
         );
-        console.info(11, exists, 22);
         if (!exists) {
           const data = await this.addRecordInDB(item);
           return data;
@@ -30,13 +27,11 @@ export default class SubmissionService {
       }
       return false;
     } catch (err) {
-      console.info(12488, err);
       throw err;
     }
   }
   async checkSubmissionExistsByRedditId(id) {
     try {
-      console.info(4004, id);
       return await this.EntityProvider.findOne({ redditId: id });
     } catch (err) {
       throw err;

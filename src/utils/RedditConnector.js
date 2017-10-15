@@ -105,7 +105,6 @@ export default class RedditConnector {
     console.info('start fetching reddit api getRisingForGivenSubReddit');
     try {
       await this.checkAndGenerateAccessToken();
-      console.info(789);
       const data = await this.connector
         .getSubreddit(options.subreddit)
         .getRising({ limit: options.limit ? options.limit : 100 });

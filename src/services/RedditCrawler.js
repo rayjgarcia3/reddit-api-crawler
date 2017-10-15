@@ -24,15 +24,15 @@ export default class RedditCrawler {
           }),
         ),
       );
-      console.info(res, 1121111111111);
+      // console.info(res, 1121111111111);
       const r = await Promise.all(
-        res.map(item => {
-          return this.submissionService.storeDataInDbFromAPIResponse(item);
-        }),
+        res.map(item =>
+          this.submissionService.storeDataInDbFromAPIResponse(item),
+        ),
       );
-      console.log(r);
+      return r;
     } catch (err) {
-      console.log(err);
+      console.info(err);
       throw err;
     }
   }
