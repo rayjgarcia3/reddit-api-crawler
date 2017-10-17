@@ -2,11 +2,13 @@
 /** * Reddit-API-Crawler * * Copyright © 2017-present MindLabs, LLC. All rights reserved. * * This source code is licensed under the MIT license found in the * LICENSE.txt file in the root directory of this source tree. */
 
 import Submission from '../data/mongo/models/Submission';
+import MediaHandler from './../utils/MediaHandler';
 
 export default class SubmissionService {
   constructor(...args) {
     this.args = args;
     this.EntityProvider = Submission;
+    this.MediaHandlerInstance = new MediaHandler();
   }
 
   async storeDataInDbFromAPIResponse(item) {
@@ -20,9 +22,11 @@ export default class SubmissionService {
         const exists = await this.checkSubmissionExistsByRedditId(
           await item.id,
         );
+        // console.log(item);
         if (!exists) {
           const data = await this.addRecordInDB(item);
-          return data;
+          // console.log(data);
+          this.MediaHandlerInstance.handleMadia(data.url, data.redditId);
         }
       }
       return false;

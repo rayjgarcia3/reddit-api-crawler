@@ -24,7 +24,6 @@ export default class RedditCrawler {
           }),
         ),
       );
-      // console.info(res, 1121111111111);
       const r = await Promise.all(
         res.map(item =>
           this.submissionService.storeDataInDbFromAPIResponse(item),

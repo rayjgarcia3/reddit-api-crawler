@@ -22,6 +22,12 @@ module.exports = {
       `http://localhost:${process.env.PORT || 3000}`,
   },
 
+  AWS: {
+    accessKeyId: 'AKIAJACI4DACTJB6RGJQ',
+    secretAccessKey: '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',
+    bucket: 'reddit-crawler',
+  },
+
   // Reddit
   Reddit: {
     userAgent: 'API Node js bot for FapFree by /u/vahan_93',
