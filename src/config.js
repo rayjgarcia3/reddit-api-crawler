@@ -23,8 +23,8 @@ module.exports = {
   },
 
   AWS: {
-    accessKeyId: 'AKIAJACI4DACTJB6RGJQ',
-    secretAccessKey: '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',
+    accessKeyId: '***************',
+    secretAccessKey: '*************************',
     bucket: 'reddit-crawler',
   },
 
